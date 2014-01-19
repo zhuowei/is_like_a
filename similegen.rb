@@ -22,4 +22,3 @@ module SimileGen
 		return out
 	end
 end
-print SimileGen.make

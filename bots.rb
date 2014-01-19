@@ -15,7 +15,9 @@ Ebooks::Bot.new("is_like_a") do |bot|
   bot.oauth_token = ENV["OAUTH_TOKEN"] # Token connecting the app to this account
   bot.oauth_token_secret = ENV["OAUTH_SECRET"] # Secret connecting the app to this account
 
-  bot.scheduler.every '10m' do
+  interval_config = ENV["TWEET_INTERVAL"]? ENV["TWEET_INTERVAL"] : "10m"
+
+  bot.scheduler.every interval_config do
     # Tweet something every 10 minutes
     # See https://github.com/jmettraux/rufus-scheduler
     # bot.tweet("hi")
