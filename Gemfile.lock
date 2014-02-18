@@ -27,6 +27,7 @@ GEM
     faraday (0.9.0)
       multipart-post (>= 1.2, < 3)
     fast-stemmer (1.0.2)
+    ffi (1.9.3)
     gingerice (1.2.2)
       addressable
       awesome_print
@@ -73,4 +74,5 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  ffi
   twitter_ebooks
