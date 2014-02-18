@@ -3,3 +3,4 @@ ruby '1.9.3'
 
 gem 'twitter_ebooks'
 gem 'ffi'
+gem 'rmagick'
