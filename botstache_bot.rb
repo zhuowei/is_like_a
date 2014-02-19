@@ -39,7 +39,11 @@ Ebooks::Bot.new("botstache") do |bot|
       File.delete(tempfile)
       puts("done")
     else
-      bot.reply(tweet, meta[:reply_prefix] + "No face detected, please try again.")
+      begin
+        bot.reply(tweet, meta[:reply_prefix] + "No face detected, please try again.")
+      rescue Twitter::Error::Forbidden
+        bot.reply(tweet, meta[:reply_prefix] + "Again, no face detected, please try again.")
+      end
     end
     end
   end
