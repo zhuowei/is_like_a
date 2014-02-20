@@ -24,7 +24,12 @@ Ebooks::Bot.new("makespagheti") do |bot|
       followerinfo = bot.twitter.user(followerid, {:include_entities=>false, :skip_status=>true})
       followername = followerinfo.screen_name
       mymessage = "when @#{followername} com home and make hte spagheti"
-      bot.tweet(mymessage)
+      begin
+        bot.tweet(mymessage)
+      rescue Twitter::Error::Forbidden
+        mymessage = "luks like @#{followername} is stil makeing hte spagheti"
+        bot.tweet(mymessage)
+      end
     end
 
   end

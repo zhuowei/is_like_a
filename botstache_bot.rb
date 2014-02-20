@@ -32,17 +32,18 @@ Ebooks::Bot.new("botstache") do |bot|
     img = Magick::Image.from_blob(imgdat)[0]
     outimg = Botstache.addstache(img)
     img.destroy!()
+    tweet_prefix = "@" + tweet[:user][:screen_name] + " "
     if outimg != nil
       tempfile = "out-" + String(tweet[:id]) + ".jpg"
       outimg.write(tempfile)
-      bot.twitter.update_with_media(meta[:reply_prefix], File.new(tempfile), in_reply_to_status_id: tweet[:id])
+      bot.twitter.update_with_media(tweet_prefix, File.new(tempfile), in_reply_to_status_id: tweet[:id])
       File.delete(tempfile)
       puts("done")
     else
       begin
-        bot.reply(tweet, meta[:reply_prefix] + "No face detected, please try again.")
+        bot.reply(tweet, tweet_prefix + "No face detected, please try again.")
       rescue Twitter::Error::Forbidden
-        bot.reply(tweet, meta[:reply_prefix] + "Again, no face detected, please try again.")
+        bot.reply(tweet, tweet_prefix + "Again, no face detected, please try again.")
       end
     end
     end
