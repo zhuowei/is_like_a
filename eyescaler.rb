@@ -10,7 +10,7 @@ module Eyescaler
 			return nil
 		end
 
-		eyewidth = (eyedist * 1)
+		eyewidth = (eyedist * 0.7)
 		eyeheight = eyewidth / 3
 
 		circleimg = Image.new eyewidth, eyeheight
