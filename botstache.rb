@@ -10,8 +10,8 @@ module Botstache
 		img = Image.read("moustaches/" + stachefile) { self.background_color = "transparent" }[0]
 		return img
 	end
-	def self.addstache(srcimg)
-		img = srcimg
+
+	def self.detectFace(img)
 		scale = 1
 		if [img.columns, img.rows].max > 600
 			scale = [img.columns, img.rows].max / 600.0
@@ -32,10 +32,18 @@ module Botstache
 		face = Neven::NevenFace.new
 		Neven.neven_get_face(detector, face, 1);
 		Neven.neven_destroy(detector)
-		print(face[:confidence], " ", face[:midpointx], " ", face[:midpointy], " ", face[:eyedist])
 		eyedist = face[:eyedist] * scale
 		midpointx = face[:midpointx] * scale
 		midpointy = face[:midpointy] * scale
+		return eyedist, midpointx, midpointy
+	end
+
+	def self.addstache(srcimg)
+		eyedist, midpointx, midpointy = Botstache::detectFace(srcimg)
+		if eyedist == nil
+			return nil
+		end
+
 		overlayimg = self.getmoustacheimg()
 		overlayscale = (eyedist * 2) / 300.0
 		overlayimg.scale!(overlayscale)
