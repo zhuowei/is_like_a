@@ -1,13 +1,12 @@
 GEM
   remote: http://rubygems.org/
   specs:
-    addressable (2.3.5)
-    atomic (1.1.14)
+    addressable (2.3.6)
     awesome_print (1.2.0)
     bloomfilter-rb (2.1.1)
       redis
     buftok (0.2.0)
-    cookiejar (0.3.1)
+    cookiejar (0.3.2)
     daemons (1.1.9)
     em-http-request (1.0.3)
       addressable (>= 2.2.3)
@@ -36,16 +35,15 @@ GEM
       whatlanguage (>= 1.0.0)
     htmlentities (4.3.1)
     http_parser.rb (0.6.0)
-    minitest (5.2.3)
-    multi_json (1.8.4)
+    minitest (5.3.3)
+    multi_json (1.9.2)
     multipart-post (2.0.0)
     redis (3.0.7)
     rmagick (2.13.2)
-    rufus-scheduler (3.0.6)
+    rufus-scheduler (3.0.7)
       tzinfo
     simple_oauth (0.2.0)
-    thread_safe (0.1.3)
-      atomic
+    thread_safe (0.3.3)
     tweetstream (2.5.0)
       daemons (~> 1.1)
       em-http-request (~> 1.0.2)
@@ -56,7 +54,7 @@ GEM
       faraday (~> 0.8, < 0.10)
       multi_json (~> 1.0)
       simple_oauth (~> 0.2)
-    twitter_ebooks (2.1.9)
+    twitter_ebooks (2.2.0)
       engtagger
       fast-stemmer
       gingerice

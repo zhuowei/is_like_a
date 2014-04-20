@@ -11,7 +11,7 @@ Ebooks::Bot.new("arm_asm") do |bot|
   bot.oauth_token_secret = ENV["SPAGHETI_OAUTH_SECRET"] # Secret connecting the app to this account
 
   bot.on_mention do |tweet, meta|
-    IO.popen([{"LD_LIBRARY_PATH" => "gas"}, "gas/arm-linux-gnueabi-as", "-aln", "-mcpu=cortex-a9", :err => [:child, :out]], "r+") do |io|
+    IO.popen(["gas/arm-linux-androideabi-as", "-aln", "-mcpu=cortex-a9", :err => [:child, :out]], "r+") do |io|
       io.puts(meta[:mentionless])
       io.close_write
       output = io.read
