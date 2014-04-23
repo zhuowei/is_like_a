@@ -21,7 +21,7 @@ GEM
       eventmachine (~> 1.0)
       http_parser.rb (~> 0.6)
       simple_oauth (~> 0.2)
-    engtagger (0.1.2)
+    engtagger (0.2.0)
     eventmachine (1.0.3)
     faraday (0.9.0)
       multipart-post (>= 1.2, < 3)
@@ -54,7 +54,7 @@ GEM
       faraday (~> 0.8, < 0.10)
       multi_json (~> 1.0)
       simple_oauth (~> 0.2)
-    twitter_ebooks (2.2.0)
+    twitter_ebooks (2.2.1)
       engtagger
       fast-stemmer
       gingerice

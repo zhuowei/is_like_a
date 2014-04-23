@@ -3,7 +3,7 @@
 require_relative 'bots'
 require_relative 'sonnetbot'
 require_relative 'botstache_bot'
-require_relative 'arm_asm'
+require_relative 'aspects_bot'
 require_relative 'eyescaler_bot'
 
 EM.run do
