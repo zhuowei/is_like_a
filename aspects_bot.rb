@@ -33,8 +33,8 @@ class GenBot
     end
 
     bot.on_mention do |tweet, meta|
-      # Avoid infinite reply chains (very small chance of crosstalk)
-      next if tweet[:user][:screen_name].include?('ebooks') && rand > 0.05
+      # Avoid infinite reply chains (50% chance of crosstalk)
+      next if tweet[:user][:screen_name].include?('ebooks') && rand > 0.5
 
       tokens = NLP.tokenize(tweet[:text])
 
@@ -88,6 +88,10 @@ class GenBot
     # Schedule a main tweet every hour
     bot.scheduler.every interval_config do
       bot.tweet @model.make_statement
+    end
+
+    # Schedule cleanup of the don't reply list every day
+    bot.scheduler.every '24h' do
       $have_talked = {}
     end
   end
