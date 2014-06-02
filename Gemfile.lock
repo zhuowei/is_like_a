@@ -33,17 +33,17 @@ GEM
     highscore (1.2.0)
       bloomfilter-rb (>= 2.1.1)
       whatlanguage (>= 1.0.0)
-    htmlentities (4.3.1)
+    htmlentities (4.3.2)
     http_parser.rb (0.6.0)
-    minitest (5.3.3)
-    multi_json (1.9.2)
+    minitest (5.3.4)
+    multi_json (1.10.1)
     multipart-post (2.0.0)
     redis (3.0.7)
     rmagick (2.13.2)
     rufus-scheduler (3.0.7)
       tzinfo
     simple_oauth (0.2.0)
-    thread_safe (0.3.3)
+    thread_safe (0.3.4)
     tweetstream (2.5.0)
       daemons (~> 1.1)
       em-http-request (~> 1.0.2)
@@ -54,7 +54,7 @@ GEM
       faraday (~> 0.8, < 0.10)
       multi_json (~> 1.0)
       simple_oauth (~> 0.2)
-    twitter_ebooks (2.2.1)
+    twitter_ebooks (2.2.5)
       engtagger
       fast-stemmer
       gingerice
@@ -64,7 +64,7 @@ GEM
       rufus-scheduler
       tweetstream (= 2.5)
       twitter (~> 4.5)
-    tzinfo (1.1.0)
+    tzinfo (1.2.1)
       thread_safe (~> 0.1)
     whatlanguage (1.0.5)
     yajl-ruby (1.2.0)
