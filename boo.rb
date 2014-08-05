@@ -70,15 +70,17 @@ def startBoo
 			if mentions.length != 0
 				reply_target += " @" + mentions[0][:screen_name]
 			end
+			delay = DELAY.to_a.sample
 			Ebooks::Bot.all.each do |bot|
 				begin
-					bot.delay DELAY do
+					bot.delay delay do
 						begin
 							bot.reply(status, reply_target + " " + hug_comments.sample)
 						rescue Exception => msg
 							puts msg
 						end
 					end
+					delay += (1..5).to_a.sample
 				rescue Exception => msg
 					puts msg
 				end
