@@ -5,6 +5,7 @@ DELAY = 2..30 # Simulated human reply delay range in seconds
 def startBoo
 
 	boo_comments = ["BOOO BOOO BOOO", "GET OFF THE STAGE", "BOOO *throws tomatoes*"]
+	applaud_comments = ["Clap clap clap", "Good job!", "Awesome!" "Round of applause!"]
 
 	TweetStream.configure do |config|
 		config.consumer_key = ENV["CONSUMER_KEY"]
@@ -27,6 +28,29 @@ def startBoo
 					bot.delay DELAY do
 						begin
 							bot.reply(status, reply_target + " " + boo_comments.sample)
+						rescue Exception => msg
+							puts msg
+						end
+					end
+				rescue Exception => msg
+					puts msg
+				end
+			end
+		end
+	end
+
+	client.track("#botapplaud") do |status|
+		if not status.retweet?
+			mentions = status.attrs[:entities][:user_mentions]
+			reply_target = "@" + status.attrs[:user][:screen_name]
+			if mentions.length != 0
+				reply_target += " @" + mentions[0][:screen_name]
+			end
+			Ebooks::Bot.all.each do |bot|
+				begin
+					bot.delay DELAY do
+						begin
+							bot.reply(status, reply_target + " " + applaud_comments.sample)
 						rescue Exception => msg
 							puts msg
 						end
