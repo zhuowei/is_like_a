@@ -6,6 +6,7 @@ def startBoo
 
 	boo_comments = ["BOOO BOOO BOOO", "GET OFF THE STAGE", "BOOO *throws tomatoes*"]
 	applaud_comments = ["Clap clap clap", "Good job!", "That's awesome!", "Round of applause!"]
+	hug_comments = ["*hug*", "*hugs*", "*hug* ^_^", "HUG"]
 
 	TweetStream.configure do |config|
 		config.consumer_key = ENV["CONSUMER_KEY"]
@@ -61,5 +62,29 @@ def startBoo
 			end
 		end
 	end
+
+	client.track("#bothug") do |status|
+		if not status.retweet?
+			mentions = status.attrs[:entities][:user_mentions]
+			reply_target = "@" + status.attrs[:user][:screen_name]
+			if mentions.length != 0
+				reply_target += " @" + mentions[0][:screen_name]
+			end
+			Ebooks::Bot.all.each do |bot|
+				begin
+					bot.delay DELAY do
+						begin
+							bot.reply(status, reply_target + " " + hug_comments.sample)
+						rescue Exception => msg
+							puts msg
+						end
+					end
+				rescue Exception => msg
+					puts msg
+				end
+			end
+		end
+	end
+
 	puts "Started boo chorus listener"
 end
