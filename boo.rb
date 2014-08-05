@@ -5,7 +5,7 @@ DELAY = 2..30 # Simulated human reply delay range in seconds
 def startBoo
 
 	boo_comments = ["BOOO BOOO BOOO", "GET OFF THE STAGE", "BOOO *throws tomatoes*"]
-	applaud_comments = ["Clap clap clap", "Good job!", "Awesome!" "Round of applause!"]
+	applaud_comments = ["Clap clap clap", "Good job!", "That's awesome!", "Round of applause!"]
 
 	TweetStream.configure do |config|
 		config.consumer_key = ENV["CONSUMER_KEY"]
