@@ -1,7 +1,5 @@
 require 'tweetstream'
 
-DELAY = 2..30 # Simulated human reply delay range in seconds
-
 def startBoo
 
 	boo_comments = ["BOOO BOOO BOOO", "GET OFF THE STAGE", "BOOO *throws tomatoes*"]
