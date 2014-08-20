@@ -92,7 +92,7 @@ class GenBot
 
     # Schedule cleanup of the don't reply list every day
     bot.scheduler.every '24h' do
-      $have_talked.clear
+      $have_talked = {}
     end
   end
 
