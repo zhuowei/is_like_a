@@ -11,6 +11,5 @@ require_relative 'boo'
 EM.run do
  Ebooks::Bot.all.each do |bot|
     bot.start
-  end
- startBoo
+ end
 end

@@ -18,6 +18,9 @@ class GenBot
       @model = Model.load("model/#{modelname}.model")
       @top100 = @model.keywords.top(100).map(&:to_s).map(&:downcase)
       @top50 = @model.keywords.top(20).map(&:to_s).map(&:downcase)
+      bot.delay DELAY do
+        bot.tweet @model.make_statement
+      end
     end
 
     bot.on_message do |dm|
