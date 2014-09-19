@@ -7,6 +7,7 @@ require_relative 'aspects_bot'
 require_relative 'eyescaler_bot'
 require_relative 'standard_bots'
 require_relative 'boo'
+require_relative 'hanan_bot'
 
 EM.run do
  Ebooks::Bot.all.each do |bot|
