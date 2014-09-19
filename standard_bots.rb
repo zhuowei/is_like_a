@@ -22,6 +22,7 @@ Ebooks::Bot.new("Munchlax_ebooks") do |bot| # Ebooks account username
   make_bot(bot, "MunchlaxRegrets") # This should be the name of the text model
 end
 
+=begin
 Ebooks::Bot.new("pressEXE_ebooks") do |bot| # Ebooks account username
   bot.consumer_key = ENV["CONSUMER_KEY"] # Your app consumer key
   bot.consumer_secret = ENV["CONSUMER_SECRET"] # Your app consumer secret
@@ -30,3 +31,4 @@ Ebooks::Bot.new("pressEXE_ebooks") do |bot| # Ebooks account username
 
   make_bot(bot, "pressEXE") # This should be the name of the text model
 end
+=end
