@@ -105,8 +105,8 @@ class HananBot
     TweetStream.configure do |config|
       config.consumer_key = ENV["CONSUMER_KEY"]
       config.consumer_secret = ENV["CONSUMER_SECRET"]
-      config.oauth_token = bot.oauth_token
-      config.oauth_token_secret = bot.oauth_token_secret
+      config.oauth_token = @bot.oauth_token
+      config.oauth_token_secret = @bot.oauth_token_secret
     end
     client = TweetStream::Client.new
 
