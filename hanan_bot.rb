@@ -89,9 +89,9 @@ class HananBot
     interval_config = ENV["TWEET_INTERVAL"]? ENV["TWEET_INTERVAL"] : "1h"
 
     # Schedule a main tweet every hour
-    #bot.scheduler.every interval_config do
-    #  bot.tweet @model.make_statement
-    #end
+    bot.scheduler.every interval_config do
+      bot.tweet @model.make_statement
+    end
 
     # Schedule cleanup of the don't reply list every day
     bot.scheduler.every '24h' do
@@ -102,7 +102,7 @@ class HananBot
   def handle_other_user()
     @bot.stream.follow(@bot.twitter.user("hananahammocks", {:include_entities => false, :skip_status => false}).id) do |status|
       next unless status[:text]
-      next if ev.attrs[:entities].length != 0
+      next if status.attrs[:entities][:user_mentions].length != 0
       tokens = Ebooks::NLP.tokenize(status[:text])
       tokens.map! { |x|
         if not Ebooks.NLP.punctuation(x) and rand < 0.8
