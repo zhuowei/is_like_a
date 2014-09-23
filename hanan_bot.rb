@@ -102,15 +102,7 @@ class HananBot
   end
 
   def handle_other_user()
-    TweetStream.configure do |config|
-      config.consumer_key = ENV["CONSUMER_KEY"]
-      config.consumer_secret = ENV["CONSUMER_SECRET"]
-      config.oauth_token = @bot.oauth_token
-      config.oauth_token_secret = @bot.oauth_token_secret
-    end
-    client = TweetStream::Client.new
-
-    client.follow("hananahammocks") do |status|
+    @bot.stream.follow("hananahammocks") do |status|
       next unless status[:text]
       next if ev.attrs[:entities].length != 0
       tokens = Ebooks::NLP.tokenize(status[:text])
