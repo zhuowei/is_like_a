@@ -94,12 +94,6 @@ class HananBot
     bot.scheduler.every '24h' do
       $have_talked = {}
     end
-    TweetStream.configure do |config|
-      config.consumer_key = ENV["CONSUMER_KEY"]
-      config.consumer_secret = ENV["CONSUMER_SECRET"]
-      config.oauth_token = bot.oauth_token
-      config.oauth_token_secret = bot.oauth_token_secret
-    end
 
     EM.next_tick do
       handle_other_user()
@@ -108,6 +102,12 @@ class HananBot
   end
 
   def handle_other_user()
+    TweetStream.configure do |config|
+      config.consumer_key = ENV["CONSUMER_KEY"]
+      config.consumer_secret = ENV["CONSUMER_SECRET"]
+      config.oauth_token = bot.oauth_token
+      config.oauth_token_secret = bot.oauth_token_secret
+    end
     client = TweetStream::Client.new
 
     client.follow("hananahammocks") do |status|
