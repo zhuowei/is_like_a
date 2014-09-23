@@ -18,6 +18,9 @@ class HananBot
       bot.delay DELAY do
         bot.tweet @model.make_statement
       end
+      EM.next_tick do
+        handle_other_user()
+      end
     end
 
     bot.on_message do |dm|
@@ -94,15 +97,10 @@ class HananBot
     bot.scheduler.every '24h' do
       $have_talked = {}
     end
-
-    EM.next_tick do
-      handle_other_user()
-    end
-
   end
 
   def handle_other_user()
-    @bot.stream.follow("hananahammocks") do |status|
+    @bot.stream.follow(@bot.twitter.user("hananahammocks", {:include_entities => false, :skip_status => false}).id) do |status|
       next unless status[:text]
       next if ev.attrs[:entities].length != 0
       tokens = Ebooks::NLP.tokenize(status[:text])
