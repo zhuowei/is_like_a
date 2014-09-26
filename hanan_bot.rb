@@ -105,12 +105,12 @@ class HananBot
       next if status.attrs[:entities][:user_mentions].length != 0
       tokens = Ebooks::NLP.tokenize(status[:text])
       tokens.map! { |x|
-        if not Ebooks.NLP.punctuation(x) and rand < 0.8
+        if not Ebooks::NLP.punctuation(x) and rand < 0.8
           return "*click click click*"
         end
         return x
       }
-      newtweet = Ebooks.NLP.reconstruct(tokens)
+      newtweet = Ebooks::NLP.reconstruct(tokens)
       while newtweet.length > 0
         bot.tweet(newtweet.slice(0, 140))
         newtweet = newtweet.slice(140)
