@@ -105,7 +105,7 @@ class HananBot
       next if status.attrs[:entities][:user_mentions].length != 0
       tokens = Ebooks::NLP.tokenize(status[:text])
       tokens.map! { |x|
-        if not Ebooks::NLP.punctuation(x) and rand < 0.8
+        if not Ebooks::NLP.punctuation?(x) and rand < 0.8
           return "*click click click*"
         end
         return x
