@@ -77,8 +77,8 @@ class HananBot
       $have_talked[tweet[:user][:screen_name]] = true
 
       if very_interesting || special
-        favorite(tweet) if rand < 0.5
-        retweet(tweet) if rand < 0.1
+        favorite(tweet) if rand < 0.5 and not special
+        retweet(tweet) if rand < 0.1 and not special
         reply(tweet, meta) if rand < 0.1
       elsif interesting
         favorite(tweet) if rand < 0.1
@@ -106,9 +106,10 @@ class HananBot
       tokens = Ebooks::NLP.tokenize(status[:text])
       tokens.map! { |x|
         if not Ebooks::NLP.punctuation?(x) and rand < 0.8
-          return "*click click click*"
+          "*click click click*"
+        else
+          x
         end
-        return x
       }
       newtweet = Ebooks::NLP.reconstruct(tokens)
       while newtweet.length > 0

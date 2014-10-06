@@ -77,8 +77,8 @@ class GenBot
       $have_talked[tweet[:user][:screen_name]] = true
 
       if very_interesting || special
-        favorite(tweet) if rand < 0.5
-        retweet(tweet) if rand < 0.1
+        favorite(tweet) if rand < 0.5 and not special
+        retweet(tweet) if rand < 0.1 and not special
         reply(tweet, meta) if rand < 0.1
       elsif interesting
         favorite(tweet) if rand < 0.1
