@@ -113,7 +113,7 @@ class HananBot
       }
       newtweet = Ebooks::NLP.reconstruct(tokens)
       while newtweet.length > 0
-        bot.tweet(newtweet.slice(0, 140))
+        @bot.tweet(newtweet.slice(0, 140))
         newtweet = newtweet.slice(140)
       end
     end
