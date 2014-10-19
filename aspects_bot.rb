@@ -20,6 +20,7 @@ class GenBot
       @top50 = @model.keywords.top(20).map(&:to_s).map(&:downcase)
       bot.delay DELAY do
         bot.tweet @model.make_statement
+        cleanfollowers
       end
     end
 
@@ -97,6 +98,12 @@ class GenBot
     bot.scheduler.every '24h' do
       $have_talked = {}
     end
+
+    # Schedule cleanup of followers
+    bot.scheduler.every '1h' do
+      cleanfollowers
+    end
+
   end
 
   def reply(tweet, meta)
@@ -118,6 +125,16 @@ class GenBot
     @bot.delay DELAY do
       @bot.twitter.retweet(tweet[:id])
     end
+  end
+
+  def cleanfollowers()
+    following = @bot.twitter.friend_ids(@bot.username).all
+    followers = @bot.twitter.follower_ids(@bot.username).all
+    tounfollow = following - followers
+    tounfollow.slice(0, 10).each { |id|
+      @bot.log "Unfollowing " + id.to_s
+      @bot.twitter.unfollow(id)
+    }
   end
 end
 
