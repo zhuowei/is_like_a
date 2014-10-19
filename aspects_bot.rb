@@ -42,7 +42,7 @@ class GenBot
       tokens = NLP.tokenize(tweet[:text])
 
       very_interesting = tokens.find_all { |t| @top50.include?(t.downcase) }.length > 2
-      special = tokens.find { |t| ['ebooks', 'bot', 'bots', 'clone', 'singularity', 'world domination'].include?(t) }
+      special = false #tokens.find { |t| ['ebooks', 'bot', 'bots', 'clone', 'singularity', 'world domination'].include?(t) }
 
       if very_interesting || special
         favorite(tweet)
@@ -61,9 +61,9 @@ class GenBot
       # tweet matches our keywords
       interesting = tokens.find { |t| @top100.include?(t.downcase) }
       very_interesting = tokens.find_all { |t| @top50.include?(t.downcase) }.length > 2
-      special = tokens.find { |t| ['ebooks', 'bot', 'bots', 'clone', 'singularity', 'world domination'].include?(t) }
+      special = false #tokens.find { |t| ['ebooks', 'bot', 'bots', 'clone', 'singularity', 'world domination'].include?(t) }
 
-      if special
+      if very_interesting #special
         favorite(tweet)
 
         bot.delay DELAY do
@@ -77,7 +77,7 @@ class GenBot
       $have_talked[tweet[:user][:screen_name]] = true
 
       if very_interesting || special
-        favorite(tweet) if rand < 0.5 and not special
+        #favorite(tweet) if rand < 0.5 and not special
         retweet(tweet) if rand < 0.1 and not special
         reply(tweet, meta) if rand < 0.1
       elsif interesting
