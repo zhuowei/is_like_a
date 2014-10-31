@@ -4,7 +4,7 @@ require 'twitter_ebooks'
 require_relative 'eyescaler'
 require_relative 'image_bot_common'
 
-Ebooks::Bot.new("eyescaler") do |bot|
+Ebooks::Bot.new("Eyescaler") do |bot|
   # Consumer details come from registering an app at https://dev.twitter.com/
   # OAuth details can be fetched with https://github.com/marcel/twurl
   bot.consumer_key = ENV["CONSUMER_KEY"] # Your app consumer key
