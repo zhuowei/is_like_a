@@ -14,7 +14,7 @@ Ebooks::Bot.new("botstache") do |bot|
 
   bot.on_mention do |tweet, meta|
     # Reply to a mention
-    image_bot_handle(tweet, meta) do |img|
+    image_bot_handle(bot, tweet, meta) do |img|
       Botstache.addstache(img)
     end
   end

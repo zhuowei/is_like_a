@@ -2,7 +2,7 @@ require 'twitter_ebooks'
 require 'faraday'
 require 'RMagick'
 
-def image_bot_handle(tweet, meta, extension = ".jpg", &handler)
+def image_bot_handle(bot, tweet, meta, extension = ".jpg", &handler)
     # does this contain an image?
     media = tweet.media()
     if media.length < 1
