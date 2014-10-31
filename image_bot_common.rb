@@ -8,7 +8,7 @@ def image_bot_handle(bot, tweet, meta, extension = ".jpg", &handler)
     if media.length < 1
       if tweet.in_reply_to_status_id != nil
         prevtweet = bot.twitter.status(tweet.in_reply_to_status_id, trim_user: true)
-        media = tweet.media()
+        media = prevtweet.media()
       end
       if media.length < 1
         return
