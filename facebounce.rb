@@ -40,6 +40,7 @@ module Facebounce
 
 		img = srcimg
 		outimg = ImageList.new
+		outimg.push img
 
 		for i in 0..19
 			newimg = img.composite faceimg, x, y, OverCompositeOp
