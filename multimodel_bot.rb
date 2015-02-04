@@ -128,13 +128,13 @@ class GenBotMulti
   end
 
   def cleanfollowers()
-    following = @bot.twitter.friend_ids(@bot.username).all
-    followers = @bot.twitter.follower_ids(@bot.username).all
-    tounfollow = following - followers
-    tounfollow.slice(0, 10).each { |id|
-      @bot.log "Unfollowing " + id.to_s
-      @bot.twitter.unfollow(id)
-    }
+    #following = @bot.twitter.friend_ids(@bot.username).all
+    #followers = @bot.twitter.follower_ids(@bot.username).all
+    #tounfollow = following - followers
+    #tounfollow.slice(0, 10).each { |id|
+    #  @bot.log "Unfollowing " + id.to_s
+    #  @bot.twitter.unfollow(id)
+    #}
   end
 
   def model()
